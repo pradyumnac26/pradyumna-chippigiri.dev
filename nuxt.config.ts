@@ -1,8 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  hooks: {
+ hooks: {
     'build:before': async () => {
-      // Generate RSS data during build process
+      if (process.env.NETLIFY) {
+        console.log('🪶 Skipping Substack sync on Netlify build...')
+        return
+      }
       try {
         const { default: syncSubstack } = await import('./scripts/sync-substack.js')
         await syncSubstack()
@@ -12,6 +15,8 @@ export default defineNuxtConfig({
       }
     }
   },
+  nitro: { preset: 'netlify', prerender: { failOnError: false } }
+},
   compatibilityDate: "2024-11-13",
   // Nuxt 4 experimental features for enhanced performance
   experimental: {

@@ -1,0 +1,38 @@
+name: 🪶 Weekly Substack Sync
+
+on:
+  schedule:
+    # Every Monday at 5 AM UTC (adjust as you like)
+    - cron: '0 5 * * MON'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  sync-substack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Substack Sync Script
+        run: node scripts/sync-substack.js
+
+      - name: Commit and push updated feed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add server/api/feed/data.ts
+          git commit -m "🤖 Auto-sync Substack feed on $(date)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
