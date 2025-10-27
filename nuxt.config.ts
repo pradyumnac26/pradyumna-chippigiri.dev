@@ -16,11 +16,6 @@ export default defineNuxtConfig({
     }
   },
 
-  nitro: { 
-    preset: 'netlify', 
-    prerender: { failOnError: false } 
-  },
-
   compatibilityDate: "2024-11-13",
 
   // Nuxt 4 experimental features for enhanced performance
@@ -177,12 +172,17 @@ routeRules: {
     provider: process.env['NODE_ENV'] === 'production' ? 'netlify' : 'ipx',
     domains: ['pradyumna-chippigiri.netlify.app']
   },
-nitro: {
-  preset: 'netlify',
+
+  nitro: {
+  preset: process.env.NITRO_PRESET || 'netlify',
   prerender: {
     failOnError: false
+  },
+  output: {
+    publicDir: '.output/public'
   }
 },
+
 
   sitemap: {
     xsl: false
