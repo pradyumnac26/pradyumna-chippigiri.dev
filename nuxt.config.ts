@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
- hooks: {
+  hooks: {
     'build:before': async () => {
       if (process.env.NETLIFY) {
         console.log('🪶 Skipping Substack sync on Netlify build...')
@@ -15,9 +15,14 @@ export default defineNuxtConfig({
       }
     }
   },
-  nitro: { preset: 'netlify', prerender: { failOnError: false } }
-},
+
+  nitro: { 
+    preset: 'netlify', 
+    prerender: { failOnError: false } 
+  },
+
   compatibilityDate: "2024-11-13",
+
   // Nuxt 4 experimental features for enhanced performance
   experimental: {
     // Enhanced client-side navigation
