@@ -88,17 +88,14 @@ export default defineNuxtConfig({
       }
     },
   },
-    routeRules: {
-        '/': {prerender: true},
-        '/blog/**': {isr: true},
-        '/newsletter/**': {isr: true},
-        '/about': {prerender: true},
-        '/speaking': {prerender: true},
-        '/projects': {prerender: true},
-        '/uses': {prerender: true},
-        '/contact': {redirect: '/about'},
-        '/rss.xml': {prerender: true}
-    },
+routeRules: {
+  '/': { prerender: true },
+  '/blog/**': { isr: true },
+  '/about': { prerender: true },
+  '/projects': { prerender: true },
+  '/rss.xml': { prerender: true }
+},
+
   app: {
     head: {
       htmlAttrs: {
@@ -180,9 +177,13 @@ export default defineNuxtConfig({
     provider: process.env['NODE_ENV'] === 'production' ? 'netlify' : 'ipx',
     domains: ['pradyumna-chippigiri.netlify.app']
   },
-  nitro: {
-    preset: 'netlify'
-  },
+nitro: {
+  preset: 'netlify',
+  prerender: {
+    failOnError: false
+  }
+},
+
   sitemap: {
     xsl: false
   },
