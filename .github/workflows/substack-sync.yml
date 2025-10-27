@@ -2,9 +2,11 @@ name: 🪶 Weekly Substack Sync
 
 on:
   schedule:
-    # Every Monday at 5 AM UTC (adjust as you like)
-    - cron: '0 5 * * MON'
-  workflow_dispatch: # Allows manual trigger
+    # 5:30 PM Central during Daylight Time (CDT = UTC-5) → 22:30 UTC
+    - cron: '30 22 * * MON'
+    # 5:30 PM Central during Standard Time (CST = UTC-6) → 23:30 UTC
+    - cron: '30 23 * * MON'
+  workflow_dispatch: {}
 
 jobs:
   sync-substack:
@@ -32,7 +34,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add server/api/feed/data.ts
-          git commit -m "🤖 Auto-sync Substack feed on $(date)"
+          git commit -m "🤖 Auto-sync Substack feed ($(date -u +'%Y-%m-%d %H:%M UTC'))" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
