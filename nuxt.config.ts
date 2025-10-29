@@ -68,21 +68,22 @@ export default defineNuxtConfig({
       }
     }
   },
-  runtimeConfig: {
-    public: {
-      siteUrl: process.env['NUXT_PUBLIC_SITE_URL'] || 'http://localhost:3000',
-      urlSchema: 'http',
-      urlDomain: 'localhost:3000',
-      urlBase: 'http://localhost:3000',
-      sentry: {
-        dsn: '',
-        environment: 'development',
-      },
-      fathom: {
-        siteId: ''
-      }
+runtimeConfig: {
+  public: {
+    siteUrl: process.env['NUXT_PUBLIC_SITE_URL'] || 'https://pradyumnachippigiri.dev',
+    urlSchema: 'https',
+    urlDomain: 'pradyumnachippigiri.dev',
+    urlBase: 'https://pradyumnachippigiri.dev',
+    sentry: {
+      dsn: '',
+      environment: process.env['NODE_ENV'] === 'production' ? 'production' : 'development',
     },
+    fathom: {
+      siteId: ''
+    }
   },
+},
+
 routeRules: {
   '/': { prerender: true },
   '/blog/**': { isr: true },
@@ -170,7 +171,7 @@ routeRules: {
   },
   image: {
     provider: process.env['NODE_ENV'] === 'production' ? 'netlify' : 'ipx',
-    domains: ['pradyumna-chippigiri.netlify.app']
+    domains: ['pradyumnachippigiri.dev']
   },
 
   nitro: {
@@ -184,7 +185,9 @@ routeRules: {
 },
 
 
+
   sitemap: {
+    siteUrl: process.env['NUXT_PUBLIC_SITE_URL'] || 'https://pradyumnachippigiri.dev',
     xsl: false
   },
   css: ['./node_modules/lite-youtube-embed/src/lite-yt-embed.css'],

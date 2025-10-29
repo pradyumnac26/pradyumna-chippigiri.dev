@@ -28,7 +28,8 @@ export default defineNuxtPlugin((nuxtApp) => {
             // Optimized for production performance
             tracesSampleRate: sentry.environment === 'production' ? 0.05 : 0.2, // Reduced for prod
             // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
-            tracePropagationTargets: ['localhost', 'https://www.pradyumna-chippigiri.netlify.app'],
+            tracePropagationTargets: ['localhost', 'https://pradyumnachippigiri.dev'],
+
             replaysSessionSampleRate: 0.1,
             replaysOnErrorSampleRate: 1.0,
         })

@@ -1,7 +1,8 @@
 // Simple RSS feed without gray-matter dependency for serverless compatibility
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const baseUrl = config.public.siteUrl || 'https://www.pradyumna-chippigiri.netlify.app'
+const baseUrl = config.public.siteUrl || 'https://pradyumnachippigiri.dev'
+
 
   // Hardcoded sample RSS for testing - replace with actual content later
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>

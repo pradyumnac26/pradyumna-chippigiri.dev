@@ -5,7 +5,8 @@ type BlogPost = typeof rssData[number]
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const baseUrl = config.public.siteUrl || 'https://www.pradyumna-chippigiri.netlify.app'
+const baseUrl = config.public.siteUrl || 'https://pradyumnachippigiri.dev'
+
 
   // Use pre-generated RSS data from build time
   const posts = rssData
