@@ -10,7 +10,7 @@
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
-    Content-Security-Policy = "default-src 'self'; img-src *; media-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+    Content-Security-Policy = "default-src 'self'; img-src *; media-src *; script-src 'self' 'unsafe-inline' https://js.supascribe.com https://cdn.usefathom.com; style-src 'self' 'unsafe-inline'; connect-src *; font-src *; frame-src *;"
 
 [[redirects]]
   from = "https://pradyumna-chippigiri.netlify.app/*"
