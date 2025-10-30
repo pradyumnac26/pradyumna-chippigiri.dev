@@ -39,11 +39,15 @@ onMounted(() => {
     </p>
 
     <!-- 🪶 Supascribe embed -->
-<div
-  class="mx-auto max-w-[380px] scale-90"
-  data-supascribe-embed-id="545543691346"
-  data-supascribe-subscribe
-></div>
+<ClientOnly>
+  <div
+    class="mx-auto w-full max-w-[340px] scale-[0.92]"
+    data-supascribe-embed-id="545543691346"
+    data-supascribe-subscribe
+  ></div>
+</ClientOnly>
+
+
 
   </div>
 </template>
